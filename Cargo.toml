@@ -1,0 +1,10 @@
+[package]
+name = "trivial"
+version = "0.1.0"
+edition = "2024"
+
+[workspace]
+members = ["derive"]
+
+[dependencies]
+trivial_derive = { version = "0.1.0", path = "derive" }
