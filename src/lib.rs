@@ -16,10 +16,10 @@
 #![allow(clippy::let_underscore_untyped)]
 #![allow(clippy::similar_names)]
 
-/// Automatically derive [Claim] on a struct or enum by recurisvley calling
+/// Automatically derive [Claim] on a struct or enum by recursively calling
 /// [Claim::claim] on its contents.
 pub use trivial_derive::Claim;
-/// Automatically derive [Trivial] on a struct or enum by recurisvley calling
+/// Automatically derive [Trivial] on a struct or enum by recursively calling
 /// [Trivial::dup] on its contents.
 pub use trivial_derive::Trivial;
 
@@ -58,5 +58,17 @@ pub trait Trivial {
 impl<T: Claim> Trivial for T {
     fn dup(&self) -> Self {
         self.claim()
+    }
+}
+
+/// Converts a [`Trivial`] impl to a [`Clone`] impl
+///
+/// Can't be implemented directly due to the orphan rule
+#[derive(Debug)]
+pub struct CloneAdapter<T: Trivial>(T);
+
+impl<T: Trivial> Clone for CloneAdapter<T> {
+    fn clone(&self) -> Self {
+        Self(self.0.dup())
     }
 }
