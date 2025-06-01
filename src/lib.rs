@@ -65,7 +65,7 @@ impl<T: Claim> Trivial for T {
 ///
 /// Can't be implemented directly due to the orphan rule
 #[derive(Debug)]
-pub struct CloneAdapter<T: Trivial>(T);
+pub struct CloneAdapter<T: Trivial>(pub T);
 
 impl<T: Trivial> Clone for CloneAdapter<T> {
     fn clone(&self) -> Self {
