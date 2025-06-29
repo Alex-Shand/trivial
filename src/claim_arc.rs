@@ -3,8 +3,15 @@ use std::{ops::Deref, sync::Arc};
 use crate::Claim;
 
 /// To avoid conflicting impl error implementing [Claim] for [Arc]
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClaimArc<T: ?Sized>(pub Arc<T>);
+
+impl<T> ClaimArc<T> {
+    /// Constructor
+    pub fn new(t: T) -> Self {
+        ClaimArc(Arc::new(t))
+    }
+}
 
 impl<T: ?Sized> Deref for ClaimArc<T> {
     type Target = T;

@@ -3,7 +3,7 @@ use std::{ops::Deref, rc::Rc};
 use crate::Claim;
 
 /// To avoid conflicting impl error implementing [Claim] for [Rc]
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClaimRc<T: ?Sized>(pub Rc<T>);
 
 impl<T: ?Sized> Deref for ClaimRc<T> {
