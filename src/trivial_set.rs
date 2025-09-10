@@ -1,4 +1,8 @@
-use std::{collections::HashSet, hash::Hash, ops::Deref};
+use std::{
+    collections::HashSet,
+    hash::Hash,
+    ops::{Deref, DerefMut},
+};
 
 use crate::Trivial;
 
@@ -11,6 +15,12 @@ impl<T: Trivial + Eq + Hash> Deref for TrivialSet<T> {
 
     fn deref(&self) -> &Self::Target {
         &self.0
+    }
+}
+
+impl<T: Trivial + Eq + Hash> DerefMut for TrivialSet<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
     }
 }
 

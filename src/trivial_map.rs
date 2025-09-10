@@ -1,4 +1,8 @@
-use std::{collections::HashMap, hash::Hash, ops::Deref};
+use std::{
+    collections::HashMap,
+    hash::Hash,
+    ops::{Deref, DerefMut},
+};
 
 use crate::Trivial;
 
@@ -11,6 +15,12 @@ impl<K: Trivial + Eq + Hash, V: Trivial> Deref for TrivialMap<K, V> {
 
     fn deref(&self) -> &Self::Target {
         &self.0
+    }
+}
+
+impl<K: Trivial + Eq + Hash, V: Trivial> DerefMut for TrivialMap<K, V> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
     }
 }
 
