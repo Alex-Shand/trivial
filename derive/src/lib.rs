@@ -73,7 +73,7 @@ fn struct_impl(
             if let Some(ident) = &field.ident {
                 quote!(#ident: self.#ident.#method())
             } else {
-                quote!(self.#idx.claim())
+                quote!(self.#idx.#method())
             }
         });
         tokens.extend(quote! {
