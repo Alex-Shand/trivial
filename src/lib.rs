@@ -25,12 +25,14 @@ pub use trivial_derive::Trivial;
 
 pub use self::{
     claim_arc::ClaimArc, claim_rc::ClaimRc, trivial_box::TrivialBox,
-    trivial_vec::TrivialVec,
+    trivial_map::TrivialMap, trivial_set::TrivialSet, trivial_vec::TrivialVec,
 };
 
 mod claim_arc;
 mod claim_rc;
 mod trivial_box;
+mod trivial_map;
+mod trivial_set;
 mod trivial_vec;
 
 /// Copy but with custom code. Roughly:
